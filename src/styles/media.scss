@@ -1,0 +1,24 @@
+@media screen and (min-width: 780px) {
+  .content {
+    width: 90%;
+  }
+}
+
+@media screen and (min-width: 1340px) {
+  .content {
+    max-width: 1260px;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
