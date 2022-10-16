@@ -16,9 +16,10 @@ const props = defineProps({
 
 <style scoped>
 .icon {
-  width: 16px;
-  height: 16px;
+  width: 25px;
+  height: 25px;
   vertical-align: -0.15em;
+  font-size: 25px;
   fill: currentColor;
   overflow: hidden;
 }
