@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import ListItem from './ListItem.vue';
 import { ref, computed } from 'vue';
+import ListItem from './ListItem.vue';
+import ThemeControllerVue from './ThemeController.vue';
 
 const isShowMobileNav = ref(false);
 // 图标跳转
@@ -23,6 +24,7 @@ const iconClass = computed(() => isShowMobileNav.value ? '#icon-close' : '#icon-
         <div class="pc-nav">
           <ListItem />
         </div>
+        <ThemeControllerVue></ThemeControllerVue>
         <div class="mobile-icon" @click="handleMobileIconClick">
           <Icon :iconClass="iconClass"/>
         </div>
@@ -44,8 +46,10 @@ const iconClass = computed(() => isShowMobileNav.value ? '#icon-close' : '#icon-
   top: 0;
   left: 0;
   height: 50px;
-  background-color: #20232a;
-  color: white;
+  background-color: var(--c-background);
+  color: var(--c-text-1);
+  border-bottom: 1px solid var(--c-divider);
+  transition: border-color .5s,background-color .5s;
   & .content {
     display: flex;
     justify-content: space-between;
@@ -69,8 +73,8 @@ const iconClass = computed(() => isShowMobileNav.value ? '#icon-close' : '#icon-
 .mobile-nav {
   position: fixed;
   width: 100%;
-  background: #20232a;
-  color: white;
+  background: var(--c-background);
+  color: var(--c-text-1);
   display: flex;
   flex-direction: column;
   left: 0;
