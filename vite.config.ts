@@ -5,11 +5,4 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
   plugins: [vue()],
   base: '/syp.github.io/',
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: '@import "src/styles/var.scss";'
-      }
-    }
-  }
 })
