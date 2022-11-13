@@ -28,8 +28,7 @@ const railStyle = ({ checked }: { checked: boolean }) => {
   const light = '#242424';
   const dark = '#e5e5e5';
   style.background = checked ? light : dark;
-  // style.border = `0.5px solid ${checked ? dark : light}`;
-  return style
+  return style;
 }
 
 </script>
