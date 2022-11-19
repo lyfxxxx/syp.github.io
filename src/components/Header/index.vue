@@ -1,23 +1,41 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, onBeforeUnmount, effect } from 'vue';
+import { debounce } from 'lodash';
 import ListItem from './ListItem.vue';
 import ThemeControllerVue from './ThemeController.vue';
 
+// 移动端展示相关处理
 const isShowMobileNav = ref(false);
 // 图标跳转
 const handleMobileIconClick = () => {
   isShowMobileNav.value = !isShowMobileNav.value;
 }
-
 const handleMobileNavClick = () => {
   isShowMobileNav.value = false;
 }
-
 const iconClass = computed(() => isShowMobileNav.value ? '#icon-close' : '#icon-category');
+
+// top时特殊样式处理
+// fixme: 只需要在首页时展示ontop样式
+const getScrollTop = () => window.pageYOffset  //用于FF
+  || document.documentElement.scrollTop  
+  || document.body.scrollTop  
+  || 0;
+let isOnTop = ref(getScrollTop() === 0 ? true : false);
+const scrollHandler = debounce(() => {
+  const scrollTop = getScrollTop();
+  isOnTop.value = scrollTop === 0 ? true : false;
+}, 100);
+window.addEventListener('scroll', scrollHandler);
+
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', scrollHandler);
+})
+
 </script>
 
 <template>
-  <div class="header-container">
+  <div class="header-container" :class="{'on-top': isOnTop}">
     <div class="content">
       <div class="left">SuYP</div>
       <div class="right">
@@ -50,6 +68,7 @@ const iconClass = computed(() => isShowMobileNav.value ? '#icon-close' : '#icon-
   color: var(--c-text-1);
   border-bottom: 1px solid var(--c-divider);
   transition: border-color .5s,background-color .5s;
+  z-index: 1;
   & .content {
     display: flex;
     justify-content: space-between;
@@ -82,6 +101,7 @@ const iconClass = computed(() => isShowMobileNav.value ? '#icon-close' : '#icon-
   bottom: 0;
   top: 50px;
   transition: background-color .5s;
+  z-index: 1;
   & :deep(.tab-name) {
     margin: 10px 0;
   }
@@ -94,6 +114,12 @@ const iconClass = computed(() => isShowMobileNav.value ? '#icon-close' : '#icon-
   & .tab-name {
     margin-right: 10px;
   }
+}
+
+.on-top {
+  background-color: transparent;
+  color: var(--c-white-soft);
+  border: none;
 }
 // 注意引入位置，必须要等mobile-nav声明完后再进行才有效
 @import '../../styles/animation.scss';
