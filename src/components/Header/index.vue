@@ -3,9 +3,10 @@ import { ref, computed, onBeforeUnmount, effect } from 'vue';
 import { debounce } from 'lodash';
 import ListItem from './ListItem.vue';
 import ThemeControllerVue from './ThemeController.vue';
+import { useRoute, useRouter } from 'vue-router';
 
 // 移动端展示相关处理
-const isShowMobileNav = ref(false);
+const isShowMobileNav = ref<boolean>(false);
 // 图标跳转
 const handleMobileIconClick = () => {
   isShowMobileNav.value = !isShowMobileNav.value;
@@ -21,7 +22,7 @@ const getScrollTop = () => window.pageYOffset  //用于FF
   || document.documentElement.scrollTop  
   || document.body.scrollTop  
   || 0;
-let isOnTop = ref(getScrollTop() === 0 ? true : false);
+let isOnTop = ref<boolean>(getScrollTop() === 0 ? true : false);
 const scrollHandler = debounce(() => {
   const scrollTop = getScrollTop();
   isOnTop.value = scrollTop === 0 ? true : false;
@@ -32,10 +33,15 @@ onBeforeUnmount(() => {
   window.removeEventListener('scroll', scrollHandler);
 })
 
+let isOnHome = computed(() => useRoute().name === 'home' || useRoute().name === 'default');
+// 满足三个条件时透明样式生效：在顶部、在首页且未打开移动端菜单
+let isShowTransparent = computed(() => isOnHome.value && isOnTop.value && !isShowMobileNav.value);
+
+
 </script>
 
 <template>
-  <div class="header-container" :class="{'on-top': isOnTop}">
+  <div class="header-container" :class="{'on-top': isShowTransparent}">
     <div class="content">
       <div class="left">SuYP</div>
       <div class="right">
@@ -59,11 +65,11 @@ onBeforeUnmount(() => {
 <style lang="scss" scoped>
 
 .header-container {
-  width: 100%;
   position: fixed;
   top: 0;
   left: 0;
   height: 50px;
+  width: 100vw;
   background-color: var(--c-background);
   color: var(--c-text-1);
   border-bottom: 1px solid var(--c-divider);
@@ -111,9 +117,6 @@ onBeforeUnmount(() => {
   display: flex;
   justify-content: center;
   align-items: center;
-  & .tab-name {
-    margin-right: 10px;
-  }
 }
 
 .on-top {

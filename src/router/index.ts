@@ -22,6 +22,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/',
+    name: 'default',
     component: homePage,
   },
 ]

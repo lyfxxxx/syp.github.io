@@ -37,7 +37,6 @@ localStorage && localStorage.setItem(timeKey, String(curTime));
   background-size: cover;
   background-position: center;
   height: 100vh;
-  width: 100%;
   position: relative;
   & .banner-content {
     position: relative;

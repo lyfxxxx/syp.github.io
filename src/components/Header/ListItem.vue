@@ -21,6 +21,7 @@ const handleRouteClick = (name: string) => {
 
 <style scoped>
 .tab-name {
+  cursor: pointer;
   margin-right: 10px;
 }
 </style>
