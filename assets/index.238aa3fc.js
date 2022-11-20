@@ -1,0 +1,1 @@
+import{_ as e,o as _,c}from"./index.81726154.js";const s={},t={class:"album"};function n(o,a){return _(),c("div",t,"\u76F8\u518C\u5360\u4F4D")}const r=e(s,[["render",n],["__scopeId","data-v-3e3b423e"]]);export{r as default};

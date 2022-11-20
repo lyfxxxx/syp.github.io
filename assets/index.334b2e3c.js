@@ -1,0 +1,1 @@
+import{_ as c,o as e,c as _}from"./index.81726154.js";const o={},s={class:"blog"};function t(n,d){return e(),_("div",s,"\u535A\u5BA2\u5360\u4F4D")}const r=c(o,[["render",t],["__scopeId","data-v-6c0d75cc"]]);export{r as default};
