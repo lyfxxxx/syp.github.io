@@ -1,9 +1,4 @@
-interface headerItem {
-  showName: string;
-  name: string;
-}
-
-const headerList: headerItem[] = [
+const headerList: common.headerItem[] = [
   {
     showName: '首页',
     name: 'home',

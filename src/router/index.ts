@@ -3,6 +3,7 @@ import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 const albumPage = () => import('../page/album/index.vue');
 const blogPage = () => import('../page/blog/index.vue');
 const homePage = () => import('../page/home/index.vue');
+const MarkDownContainer = () => import('../page/blog/components/MarkDwonContainer.vue')
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -14,6 +15,13 @@ const routes: Array<RouteRecordRaw> = [
     path: '/blog',
     name: 'blog',
     component: blogPage,
+    children: [
+      {
+        path: '/article:fileName',
+        name: 'blogArticle',
+        component: MarkDownContainer,
+      }
+    ]
   },
   {
     path: '/home',
