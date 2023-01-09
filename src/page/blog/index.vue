@@ -1,17 +1,20 @@
 <script setup lang="ts">
-import articleList from '../../constants/articleList'
 import { NCard } from 'naive-ui'
 import { useRouter } from 'vue-router'
+import { onMounted, reactive } from 'vue'
+import { getArticleList } from '../../utils/index'
 
 const router = useRouter()
 const handleCardClick = (article: common.articleListItem) => {
-  router.push({
-    name: 'blogArticle',
-    params: {
-      fileName: article.fileName,
-    }
-  })
+  
 }
+
+let articleList = reactive(new Array<common.articleListItem>());
+
+onMounted(async () => {
+  let list = await getArticleList()
+  articleList.push(...list)
+})
 
 </script>
 

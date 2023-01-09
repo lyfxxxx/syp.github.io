@@ -8,7 +8,7 @@ declare module '*.vue' {
 
 declare module '*.md' {
   // "unknown" would be more detailed depends on how you structure frontmatter
-  const attributes: Record<string, unknown>; 
+  const attributes: Record<string, string>; 
 
   // When "Mode.TOC" is requested
   const toc: { level: string, content: string }[];

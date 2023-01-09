@@ -3,7 +3,7 @@ import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 const albumPage = () => import('../page/album/index.vue');
 const blogPage = () => import('../page/blog/index.vue');
 const homePage = () => import('../page/home/index.vue');
-const MarkDownContainer = () => import('../page/blog/components/MarkDwonContainer.vue')
+const MarkDownContainer = () => import('../page/blog/components/MarkDownContainer.vue')
 
 const routes: Array<RouteRecordRaw> = [
   {

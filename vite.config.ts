@@ -1,12 +1,12 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-const mdPlugin = require('vite-plugin-markdown')
+import { Mode, plugin } from 'vite-plugin-markdown'
 
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), mdPlugin({
-    mode: 'vue',
+  plugins: [vue(), plugin({
+    mode: [Mode.VUE, Mode.HTML, Mode.TOC],
   })],
   base: '/syp.github.io/',
 })
