@@ -2,25 +2,20 @@
 import { NCard } from 'naive-ui'
 import { useRouter } from 'vue-router'
 import { onMounted, reactive } from 'vue'
-import { getArticleList } from '../../utils/index'
+import { articleList } from '../../services/getArticles'
 
 const router = useRouter()
 const handleCardClick = (article: common.articleListItem) => {
-  
+  router.push({ name: 'blogArticle', params: { fileName: article.fileName } })
 }
 
-let articleList = reactive(new Array<common.articleListItem>());
-
-onMounted(async () => {
-  let list = await getArticleList()
-  articleList.push(...list)
-})
+let localArticles: common.articleListItem[] = reactive([...articleList]);
 
 </script>
 
 <template>
   <div class="blog">
-    <NCard v-for="article in articleList" :title="article.title" @click="handleCardClick(article)">
+    <NCard v-for="article in localArticles" :title="article.title" @click="handleCardClick(article)">
       <template #header-extra>{{ article.createTime }}</template>
       <div>{{ article.intro }}</div>
     </NCard>

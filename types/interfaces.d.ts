@@ -4,6 +4,8 @@ declare module common {
     createTime: string,
     intro: string,
     html: string,
+    path: string,
+    fileName: string,
   }
   
   export interface headerItem {

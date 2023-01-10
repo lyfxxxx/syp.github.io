@@ -15,13 +15,6 @@ const routes: Array<RouteRecordRaw> = [
     path: '/blog',
     name: 'blog',
     component: blogPage,
-    children: [
-      {
-        path: '/article:fileName',
-        name: 'blogArticle',
-        component: MarkDownContainer,
-      }
-    ]
   },
   {
     path: '/home',
@@ -33,6 +26,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'default',
     component: homePage,
   },
+  {
+    path: '/article/:fileName',
+    name: 'blogArticle',
+    component: MarkDownContainer,
+  }
 ]
 
 const router = createRouter({
