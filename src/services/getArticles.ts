@@ -9,7 +9,7 @@ const getFileName = (name = '') => {
 const mdFileMap = new Map<string, string>()
 keys.forEach((key) => {
   const { html = '' } = articles[key];
-  // 注意同名文件是否可能
+  // 注意是否有存在同名文件的可能
   mdFileMap.set(getFileName(key), html)
 })
 
