@@ -14,7 +14,12 @@ declare module common {
   }
 
   export interface md {
-    attributes: Record<string, string>,
+    attributes: string,
+    title: string,
+    createTime: string,
+    description: string,
+    fileName: string,
+    image: string,
     html: string,
   }
 }

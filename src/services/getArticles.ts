@@ -14,11 +14,11 @@ keys.forEach((key) => {
 })
 
 const articleList: common.articleListItem[] = keys.map((key) => {
-  const { attributes, html = '' } = articles[key];
-  const { title = '', abstract = '', createTime = ''} = attributes || {}
+  const { title = '', description = '', createTime = '', html = '' } = articles[key];
+  debugger
   return {
     title,
-    intro: abstract,
+    intro: description,
     html,
     createTime,
     path: key,

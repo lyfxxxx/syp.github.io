@@ -1,6 +1,11 @@
+<script lang="ts">
+export default {
+  name: 'BlogIndex'
+}
+</script>
 <script setup lang="ts">
 import { NCard } from 'naive-ui'
-import { useRouter } from 'vue-router'
+import { useRouter } from 'vue-router' 
 import { onMounted, reactive } from 'vue'
 import { articleList } from '../../services/getArticles'
 
@@ -9,7 +14,7 @@ const handleCardClick = (article: common.articleListItem) => {
   router.push({ name: 'blogArticle', params: { fileName: article.fileName } })
 }
 
-let localArticles: common.articleListItem[] = reactive([...articleList]);
+const localArticles: common.articleListItem[] = reactive([...articleList]);
 
 </script>
 
